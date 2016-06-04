@@ -137,25 +137,12 @@ class TestController extends Controller
                         ->where('users.username', $user->username)
                         ->first();
                     $time = Carbon::today();
-
-                    // echo($user_info->username[0]);
                     return view('patient.patient_main', compact('user', 'user_info', 'time'));
                 }
                 if($user->user_type == 3){
                     $doctors = DB::table('users')
                         ->where('user_type', '=', 1)
                         ->get();
-                    // $admin_doctor = DB::table('users')
-                    //     ->join('doctor_entity', 'users.username', '=', 'doctor_entity.doctor_user')
-                    //     ->where('entity_user', '=', $user->username)
-                    //     ->get();
-                    
-
-                    // foreach($user_info as $u_i){
-                    //     echo($u_i->doctor_user);
-                    // }
-
-                    // return view('doctor.doctor_main', compact('user', 'user_info'));
                     return view('entity.entity-admin-dashboard', compact('user', 'doctors'));
                 }
             }
@@ -217,19 +204,8 @@ class TestController extends Controller
        
         $destination = 'propics/';
         $file = Input::file('image')->getClientOriginalExtension();
-        // Input::file('image');
-        // $file = Input::file('image');
-        // die(var_dump( $_FILES[Input::file('image')]));
-        // echo($file->getClientOriginalExtension());
-         $user = \Auth::user();
-        // $file = Input::file('image');
-        // if (File::exists($file))
-        // {
-        //     echo "Yup. It exists.";
-        // }
+        $user = \Auth::user();
 
-        // $file->move($destination, $file->getClientOriginalName());
-        // echo($file);
 
         $user = \Auth::user();
         $imagename = $user->id.".".$file;

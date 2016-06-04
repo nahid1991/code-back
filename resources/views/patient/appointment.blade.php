@@ -42,9 +42,11 @@
 							<!-- <form name="" id="contact-form" action="search.html" method="get"> -->
 							{!!Form::open(['url'=>'/appointing', 'id'=>'contact-form'])!!}
 								<input type="hidden" name="user_username" value="{{ $user->username }}">
-								<input type="hidden" name="entity_user" value="{{ $doc->entity_user }}">
-								<input type="hidden" name="doctor_user" value="{{ $doc->doctor_user }}">
-								<input type="hidden" name="date" value="{{ $date }}">
+                                @foreach($doctor_info as $doc)
+                                    <input type="hidden" name="entity_user" value="{{ $doc->entity_user }}">
+								    <input type="hidden" name="doctor_user" value="{{ $doc->doctor_user }}">
+								@endforeach
+                                <input type="hidden" name="date" value="{{ $date }}">
 								<input type="hidden" name="time" value="{{ $time }}">
 								<input type="hidden" name="serial" value="{{ $serial }}">
 								<input type="hidden" name="end_date" value="{{ $end_date }}">
